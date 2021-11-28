@@ -1,0 +1,16 @@
+/src/
+/.husky/
+/.nyc_output/
+/.git/
+/.vscode/
+/node_modules/
+tsconfig.json
+yarn.lock
+*.log
+.prettierrc
+.gitignore
+.npmignore
+.editorconfig
+.eslintrc.js
+.eslintignore
+.eslintconfig

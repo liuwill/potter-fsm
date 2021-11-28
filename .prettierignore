@@ -1,0 +1,7 @@
+tslint.json
+*.json
+**/node_modules/**
+lib/model/stub
+/.eslintrc.js
+**/package.json
+**/package-lock.json
