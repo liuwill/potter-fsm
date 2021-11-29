@@ -1,6 +1,6 @@
 {
   "name": "potter-fsm",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A Simple State Machine Lib Build At ShangHai",
   "main": "dist/main.js",
   "types": "./dist/main.d.ts",

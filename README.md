@@ -15,6 +15,12 @@ yarn add potter-fsm
 
 ## 💻 Development
 
+Use Gitpod, a free online dev environment for GitHub.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/liuwill/potter-fsm)
+
+Or clone locally:
+
 ```bash
 $ git clone git@github.com:liuwill/potter-fsm.git
 $ cd potter-fsm
