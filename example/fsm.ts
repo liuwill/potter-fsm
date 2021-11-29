@@ -97,7 +97,7 @@ function main() {
         transfer_await: buildPrintState('transfer_await'),
         mark_error: buildPrintState('mark_error'),
         refund_await: buildPrintState('refund_await'),
-        refund: buildPrintState('mark_error'),
+        refund: buildPrintState('refund'),
       },
       initState: PotterStateMachine.StateBegin,
     },

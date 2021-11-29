@@ -1,25 +1,92 @@
 # POTTER-FSM
   [![NPM version][npm-image]][npm-url]
 
-> 状态管理和有限状态机
+English | [简体中文](./README-zh_CN.md)
 
-## 背景需求:
+## 📦 Install:
 
-因为在不同的业务中，对一些实体对象都出现了状态管理和状态切换的需求。
-我们希望抽象出一个状态管理和业务流管理的机制，便于业务实现。
+```bash
+npm install potter-fsm
+```
 
-实现要求: 实现一个工具库
+```bash
+yarn add potter-fsm
+```
 
-功能说明
-- 整个机制必须是配置化的，支持任意业务模型的。
-- 支持对任意符合特定标准的对象进行状态管理
-  - 状态数据 - 规范化，但同样有足够的扩展性
-  - 状态行为
-    - 在不同状态、不同条件下，执行相应不同的业务代码。
-    - 需要三类行为：进入状态、处于状态、退出状态。
-  - 状态控制
-    - 根据状态数据，通过可配置化的条件进行可控的状态切换。
-    - 可以预设一些通用的控制逻辑
+## 💻 Development
+
+```bash
+$ git clone git@github.com:liuwill/potter-fsm.git
+$ cd potter-fsm
+$ yarn install
+$ yarn test
+$ yarn build
+$ yarn publish
+```
+
+## 🔧 Example:
+
+```js
+import PotterStateMachine, { StateContext, AbstractState } from 'potter-fsm'
+
+function buildPrintState(state) {
+  return PotterStateMachine.NewState(
+    state,
+    (ctx) => {
+      console.log(`Enter ${state}`)
+    },
+    (ctx) => {
+      console.log(`Achieve ${state}`)
+    },
+    (ctx) => {
+      console.log(`Quit ${state}`)
+    }
+  )
+}
+
+const account = { balance: 1000 }
+const machine = PotterStateMachine.New(
+  {
+    schema: [
+      {
+        action: 'transfer_money',
+        source: [PotterStateMachine.StateBegin],
+        destination: 'transfer',
+      },
+      {
+        action: 'transfer_success',
+        source: ['transfer'],
+        destination: PotterStateMachine.StateEnd,
+      },
+    ],
+    states: {
+      transfer: buildPrintState('transfer'),
+    },
+    initState: PotterStateMachine.StateBegin,
+  },
+  account
+)
+
+const actionList = [
+  'transfer_money',
+  'transfer_success',
+]
+for (const act of actionList) {
+  if (machine.isEnd()) {
+    console.log('Exit Machine End')
+    break
+  }
+
+  console.log('do action:', act)
+  const err = machine.trigger({ type: act })
+  if (err && err instanceof Error) {
+    throw err
+  }
+}
+
+console.log('All Action Executed In:', actionList)
+
+```
 
 [npm-image]: https://img.shields.io/npm/v/potter-fsm.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/potter-fsm

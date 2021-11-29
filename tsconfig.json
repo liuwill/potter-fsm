@@ -21,13 +21,12 @@
       "es6",
       "esnext"
     ],
-
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
   },
-  "include": ["src"],
+  "include": ["src", "example", "test"],
   "exclude": ["node_modules", "**/__tests__/*", "dist"]
 }

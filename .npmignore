@@ -6,6 +6,7 @@
 /node_modules/
 /example/
 /tmp/
+/test/
 tsconfig.json
 yarn.lock
 *.log

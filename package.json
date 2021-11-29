@@ -1,28 +1,19 @@
 {
   "name": "potter-fsm",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "A Simple State Machine Lib Build At ShangHai",
   "main": "dist/main.js",
   "types": "./dist/main.d.ts",
   "repository": "https://github.com/liuwill/potter-fsm.git",
   "author": "liuwill<liuwill@live.com>",
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "**/*.{ts,js}": [
-      "npm run lint"
-    ]
-  },
   "devDependencies": {
+    "@ava/typescript": "^3.0.1",
     "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/eslint-plugin-tslint": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
-    "ava": "^3.15.0",
+    "ava": "^4.0.0-rc.1",
     "chalk": "^5.0.0",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
@@ -45,6 +36,21 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --write --config ./.prettierrc './**/*.{ts,tsx}'",
     "build": "tsc --declaration src/*.ts --outDir ./dist",
-    "example": "ts-node ./example/fsm.ts"
+    "example": "ts-node ./example/fsm.ts",
+    "ci": "npm run lint"
+  },
+  "ava": {
+    "require": [
+      "ts-node/register"
+    ],
+    "files": [
+      "test/**/*"
+    ],
+    "typescript": {
+      "compile": "tsc",
+      "rewritePaths": {
+        "source/": "build/"
+      }
+    }
   }
 }

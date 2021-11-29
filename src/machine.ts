@@ -35,10 +35,10 @@ export default class PotterStateMachine<T> implements StateMachine {
   private currentState: string
   private machineStatus: string
   private options: StateMachineOption
-  private biz: T
+  private biz?: T
   private schema: { [key: string]: MachineSchemaItem }
 
-  static New<B>(opt: StateMachineOption, biz: B): PotterStateMachine<B> {
+  static New<B>(opt: StateMachineOption, biz?: B): PotterStateMachine<B> {
     const machineOpt = {
       ...opt,
     }
@@ -52,7 +52,7 @@ export default class PotterStateMachine<T> implements StateMachine {
     return new PotterStateMachine(machineOpt, biz)
   }
 
-  constructor(opt: StateMachineOption, biz: T) {
+  constructor(opt: StateMachineOption, biz?: T) {
     this.options = opt
     this.currentState = ''
     this.machineStatus = machineStatus.pending

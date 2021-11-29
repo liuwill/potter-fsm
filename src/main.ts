@@ -12,6 +12,7 @@ import PotterStateMachine, { StateMachineOption } from './machine'
 export default PotterStateMachine
 
 export {
+  PotterStateMachine,
   StateMachineOption,
   StateMachine,
   AbstractState,
