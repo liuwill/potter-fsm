@@ -8,6 +8,11 @@
 /example/
 /tmp/
 /test/
+/coverage/
+/dist/src/
+/dist/example/
+/dist/test/
+/dist/tsconfig.tsbuildinfo
 tsconfig.json
 yarn.lock
 *.log
