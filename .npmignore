@@ -4,10 +4,14 @@
 /.git/
 /.vscode/
 /node_modules/
+/example/
+/tmp/
 tsconfig.json
 yarn.lock
 *.log
+.nvmrc
 .prettierrc
+.prettierignore
 .gitignore
 .npmignore
 .editorconfig

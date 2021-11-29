@@ -1,4 +1,5 @@
 # POTTER-FSM
+  [![NPM version][npm-image]][npm-url]
 
 > 状态管理和有限状态机
 
@@ -19,3 +20,6 @@
   - 状态控制
     - 根据状态数据，通过可配置化的条件进行可控的状态切换。
     - 可以预设一些通用的控制逻辑
+
+[npm-image]: https://img.shields.io/npm/v/potter-fsm.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/potter-fsm
