@@ -24,6 +24,7 @@ export const machineStatus = {
   quit_previous: 'quit',
   enter_next: 'enter',
   achieve_next: 'achieve',
+  terminate: 'terminate',
 }
 export default class PotterStateMachine<T> implements StateMachine {
   static StateBegin = 'begin'
@@ -125,11 +126,6 @@ export default class PotterStateMachine<T> implements StateMachine {
     newState: string,
     act: StateAction
   ): Error | void {
-    if (newState === PotterStateMachine.StateEnd) {
-      console.log('state end')
-      return
-    }
-
     if (oldState !== PotterStateMachine.StateBegin) {
       this.options.states[this.currentState].quit({
         previous: '',
@@ -137,6 +133,12 @@ export default class PotterStateMachine<T> implements StateMachine {
         payload: act.payload,
       })
       this.machineStatus = machineStatus.quit_previous
+    }
+
+    if (newState === PotterStateMachine.StateEnd) {
+      this.currentState = newState
+      this.machineStatus = machineStatus.terminate
+      return
     }
 
     this.currentState = newState

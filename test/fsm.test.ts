@@ -80,6 +80,7 @@ test('State will switch as schema', (t) => {
           param.to.add(param.amount)
         },
         (ctx) => {
+          console.log('====================>')
           console.log(`Quit transfer`)
         }
       ),
@@ -96,4 +97,9 @@ test('State will switch as schema', (t) => {
     },
   })
   t.is(fromAccount.getBalance(), fromAmount - transferAmt)
+
+  machine.trigger({
+    type: 'transfer_success',
+  })
+  t.is(machine.isEnd(), true)
 })
