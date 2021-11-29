@@ -36,7 +36,8 @@
     "format": "prettier --write --config ./.prettierrc './**/*.{ts,tsx}'",
     "build": "tsc --declaration src/*.ts --outDir ./dist",
     "example": "ts-node ./example/fsm.ts",
-    "ci": "npm run lint"
+    "ci": "npm run lint",
+    "report": "nyc --reporter=lcov --reporter=html --reporter=text-summary ava"
   },
   "ava": {
     "require": [

@@ -1,4 +1,5 @@
 # POTTER-FSM
+  [![CI status][github-action-image]][github-action-url]
   [![NPM version][npm-image]][npm-url]
 
 English | [简体中文](./README-zh_CN.md)
@@ -94,5 +95,7 @@ console.log('All Action Executed In:', actionList)
 
 ```
 
+[github-action-image]: https://github.com/liuwill/potter-fsm/actions/workflows/node.js.yml/badge.svg
+[github-action-url]: https://github.com/liuwill/potter-fsm/actions
 [npm-image]: https://img.shields.io/npm/v/potter-fsm.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/potter-fsm
