@@ -44,6 +44,52 @@ interface AccountTransferParam {
   to: Account
 }
 
+test('State should read id', (t) => {
+  const stateId = 'new_id'
+  const createdState = PotterStateMachine.NewState(
+    stateId,
+    (ctx) => {
+      console.log('enter')
+    },
+    (ctx) => {
+      console.log('archive')
+    },
+    (ctx) => {
+      console.log('quit')
+    }
+  )
+  t.is(createdState.stateId(), stateId)
+})
+
+test('Machine should trigger with error', (t) => {
+  const machine = PotterStateMachine.New({
+    schema: [
+      {
+        action: 'break',
+        source: ['missing_source'],
+        destination: 'missing_target',
+      },
+      {
+        action: 'unreachable',
+        source: [PotterStateMachine.StateBegin],
+        destination: 'unreachable_target',
+      },
+    ],
+    states: {},
+  })
+
+  const stateNotExist = machine.bootstrap('not_exist')
+  t.false(!stateNotExist)
+  t.true(stateNotExist instanceof Error)
+
+  const actionList = ['not_exit', 'unreachable', 'break']
+  for (const act of actionList) {
+    const err = machine.trigger(PotterStateMachine.NewAction(act))
+    t.false(!err)
+    t.true(err instanceof Error)
+  }
+})
+
 test('State will switch as schema', (t) => {
   const transferAmt = 10
   const fromAmount = 1000
@@ -80,7 +126,6 @@ test('State will switch as schema', (t) => {
           param.to.add(param.amount)
         },
         (ctx) => {
-          console.log('====================>')
           console.log(`Quit transfer`)
         }
       ),
@@ -88,14 +133,13 @@ test('State will switch as schema', (t) => {
     initState: PotterStateMachine.StateBegin,
   })
 
-  machine.trigger({
-    type: 'transfer_money',
-    payload: {
+  machine.trigger(
+    PotterStateMachine.NewAction('transfer_money', {
       amount: transferAmt,
       from: fromAccount,
       to: toAccount,
-    },
-  })
+    })
+  )
   t.is(fromAccount.getBalance(), fromAmount - transferAmt)
 
   machine.trigger({

@@ -103,7 +103,7 @@ export default class PotterStateMachine<T> implements StateMachine {
 
   trigger(act: StateAction): Error | void {
     if (!this.schema[act.type]) {
-      console.log(act.type, this.schema)
+      // console.log(act.type, this.schema)
       return new Error('action not found')
     }
 

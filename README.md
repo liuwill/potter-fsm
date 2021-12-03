@@ -96,6 +96,7 @@ console.log('All Action Executed In:', actionList)
 ```
 
 [github-action-image]: https://github.com/liuwill/potter-fsm/actions/workflows/node.js.yml/badge.svg
+[github-action-square]: https://img.shields.io/github/workflow/status/liuwill/potter-fsm/Node.js%20CI?style=flat-square
 [github-action-url]: https://github.com/liuwill/potter-fsm/actions
 [npm-image]: https://img.shields.io/npm/v/potter-fsm.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/potter-fsm
